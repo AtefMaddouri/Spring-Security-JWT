@@ -1,14 +1,11 @@
 package tn.esprit.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.repository.CrudRepository;
 import tn.esprit.entities.AppUser;
 
-@Repository
-public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
+public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
-//	//une méthode en utilisant keywords de spring data Jpa(voir cours SPRING DATA JPA (CrudRepository) page 7)
+	//using the keyword query method to retrieve the user by username
 	public AppUser findByUsername(String username);
 
 

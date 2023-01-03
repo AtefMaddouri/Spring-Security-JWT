@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,9 +21,6 @@ import lombok.ToString;
 @Entity
 public class AppUser implements Serializable  {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -40,14 +32,9 @@ public class AppUser implements Serializable  {
 	private String username;
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "appUsers")
-	private List<Role> roles;
+	@ManyToOne
+	private Role role;
 
-	@Override
-	public String toString() {
-		return "AppUser [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", password="
-				+ password + ", roles=" + roles + "]";
-	}
 	
 	
 

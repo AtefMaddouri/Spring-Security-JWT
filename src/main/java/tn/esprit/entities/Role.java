@@ -5,12 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -37,18 +32,12 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String nom;
+	// role name must start with ROLE like ROLE_USER
+	private String roleName;
 	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="role")
 	private List<AppUser> appUsers;
 
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", nom=" + nom + "]";
-	}
-	
-	
 	
 }
